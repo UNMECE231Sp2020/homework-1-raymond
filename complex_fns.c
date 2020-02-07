@@ -44,7 +44,21 @@ Complex complex_mult(Complex c1, Complex c2) {
 Complex complex_div(Complex c1, Complex c2) {
 	double denom = magnitude(c2)*magnitude(c2);
 	Complex c = complex_mult(c1, complex_conj(c2));
+	if(denom ==0){
+	  denom = 1;
+	}
 	c.real /= denom;
 	c.imag /= denom;
 	return c;
 }
+//complex_struct(complex_add, c4, c5);
+void complex_struct(Complex(*Comp)(Complex, Complex), Complex a, Complex b) {
+	Complex result = Comp(a, b);
+	print_complex(result);
+}
+
+void comp_struct(double (*Comp)(Complex), Complex a){
+        double result = Comp(a);
+	printf("%lf Result\n", result); 
+}
+
